@@ -1,0 +1,10 @@
+<div>
+  {{#each data}}
+    <a href="{{link}}">
+      <img src="{{media.m}}" class=""/>
+    </a>
+    {{title}}
+    <span class="js-author">{{author}}</span>
+    Date taken:<span class="js-date">{{convertToLocalTime date_taken}}</span>
+  {{/each}}
+</div>
