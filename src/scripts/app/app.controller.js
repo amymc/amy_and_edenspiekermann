@@ -19,15 +19,16 @@ function AppController($, HandleBars, AppModel, imageItem) {
   Ctrl.prototype.addListeners = function addListeners() {
     console.log('add addListeners');
     //click on user, filter by user
-    this.$container.on('click', '.js-author', this.filter.bind(this, 'author'));
+    this.$container.find('.js-author').on('click', this.filter);
     // lazy load??
     //sort by date taken?
     //read more widget?
     
   };
 
-  Ctrl.prototype.filter = function filter(param) {
-    console.log('filter', param);
+  Ctrl.prototype.filter = function filter() {
+    console.log('filter', this, $(this).attr("data-authorid"));
+
     //click on user, filter by user
     
   };
