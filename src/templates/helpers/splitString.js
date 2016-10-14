@@ -4,9 +4,12 @@ define([
   'hbs/handlebars'
 ],
 function (Handlebars) {
-  function splitString (string) {
-    var newString = (string.split(/[()]/))[1];
-    return newString;
+  function splitString (string, type) {
+    var newStrings = string.split(/[() ]/);
+    if (type === 'author') {
+      return newStrings[1]
+    }
+    return newStrings.join(' ');
   }
 
   Handlebars.registerHelper('splitString', splitString);
