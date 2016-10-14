@@ -5,12 +5,12 @@
     </a>
     <div class="image-item__info">
       {{title}}
-      <p class="image-item__info-item--author js-author" data-authorid="{{author_id}}">{{splitString author}}</p>
+      <p class="image-item__info-item js-author" data-filter-item="{{author_id}}">{{splitString author}}</p>
       <p>Date taken:<span class="js-date">{{formatTime date_taken}}</span></p>
       <p>
         Tags
         {{#each tags}}
-          <span class="image-item__info-tag">{{this}}</span>
+          <span class="image-item__info-item js-tag" data-filter-item="{{this}}">{{this}}</span>
         {{/each}}
       </p>
     </div>

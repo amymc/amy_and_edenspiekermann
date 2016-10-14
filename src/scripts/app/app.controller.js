@@ -19,39 +19,34 @@ function AppController($, HandleBars, AppModel, imageItem) {
   Ctrl.prototype.addListeners = function addListeners() {
     console.log('add addListeners');
     //click on user, filter by user
-    this.$container.find('.js-author').on('click', this.filter.bind(this));
+    this.$container.find('.js-author').on('click', this.filter.bind(this, 'author'));
+    this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
     //notes to self:
     // lazy load??
     //sort by date taken?
     // routing??
-    // display tags??
-    //filter by tags
+    // format tags??
     //split into modules
   };
 
-  Ctrl.prototype.filter = function filter(e) {
+  Ctrl.prototype.filter = function filter(type, e) {
     e.preventDefault();
-    // console.log('filter', this, $(this).attr("data-authorid"));
-     var authorId = $(e.currentTarget).attr("data-authorid");
+    var filterItem = $(e.currentTarget).attr("data-filter-item");
 
-    console.log('data', this.data, 'id', authorId);
     var filteredData = this.data.filter(function (item) {
-      return item.author_id === authorId;
+      if (type === 'author') {
+        return item.author_id === filterItem;
+      }
+      return item.tags.indexOf(filterItem) > -1;
     });
 
-
-    console.log(filteredData);
     this.renderData(filteredData);
-    //click on user, filter by user
-    
   };
 
   Ctrl.prototype.getData = function getata() {
     this.model.get()
       .done(function cb(data) {
-         //this.data = data.items;
          this.sortData(data.items);
-         //this.renderData(this.data);
       }.bind(this));
   };
 
@@ -59,17 +54,10 @@ function AppController($, HandleBars, AppModel, imageItem) {
   * Sort by date taken
   */
   Ctrl.prototype.sortData = function sortData(data) {
-    //iterate over array,
-    // compare each date takem with previous
-    console.log('before sort', data);
-    //var sortedData = this.data.slice(0).sort(function(a, b) {
     data.sort(function(a, b) {
-     // console.log('a', a.date_taken, 'b',new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime() );
       //most recent first
       return new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime();
     });
-    //console.log('sortData', sortedData );
-    //this.renderData(this.data);
     this.separateTags(data);
   };
 
