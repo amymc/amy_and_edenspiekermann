@@ -8,4 +8,10 @@
   &__info {
     display: inline-block; 
   }
+
+  &__info-item {
+    &--author {
+      cursor: pointer;
+    }
+  }
 }

@@ -20,10 +20,13 @@ function AppController($, HandleBars, AppModel, imageItem) {
     console.log('add addListeners');
     //click on user, filter by user
     this.$container.find('.js-author').on('click', this.filter.bind(this));
+    //notes to self:
     // lazy load??
     //sort by date taken?
-    //read more widget?
-    
+    // routing??
+    // display tags??
+    //filter by tags
+    //split into modules
   };
 
   Ctrl.prototype.filter = function filter(e) {
@@ -47,8 +50,26 @@ function AppController($, HandleBars, AppModel, imageItem) {
     this.model.get()
       .done(function cb(data) {
          this.data = data.items;
-         this.renderData(this.data);
+         this.sortData(this.data);
+         //this.renderData(this.data);
       }.bind(this));
+  };
+
+  /**
+  * Sort by date taken
+  */
+  Ctrl.prototype.sortData = function sortData(data) {
+    //iterate over array,
+    // compare each date takem with previous
+    console.log('before sort', this.data);
+    //var sortedData = this.data.slice(0).sort(function(a, b) {
+    this.data.sort(function(a, b) {
+     // console.log('a', a.date_taken, 'b',new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime() );
+      //most recent first
+      return new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime();
+    });
+    //console.log('sortData', sortedData );
+    this.renderData(this.data);
   };
 
   Ctrl.prototype.renderData = function renderData(data) {
