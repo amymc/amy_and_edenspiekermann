@@ -1,0 +1,11 @@
+.image-item {
+  display: inline-flex;
+
+  &__link {
+    display: inline-block;
+  }
+
+  &__info {
+    display: inline-block; 
+  }
+}

@@ -1,10 +1,12 @@
-<div>
-  {{#each data}}
-    <a href="{{link}}">
-      <img src="{{media.m}}" class=""/>
+{{#each data}}
+  <div class="image-item">
+    <a class="image-item__link" href="{{link}}">
+      <img class="image-item__image" src="{{media.m}}" class=""/>
     </a>
-    {{title}}
-    <span class="js-author">{{author}}</span>
-    Date taken:<span class="js-date">{{formatTime date_taken}}</span>
-  {{/each}}
-</div>
+    <div class="image-item__info">
+      {{title}}
+      <p class="js-author">{{splitString author}}</p>
+      <p>Date taken:<span class="js-date">{{formatTime date_taken}}</span></p>
+    </div>
+  </div>
+{{/each}}

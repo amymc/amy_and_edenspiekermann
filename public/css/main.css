@@ -1,0 +1,6 @@
+.image-item {
+  display: inline-flex; }
+  .image-item__link {
+    display: inline-block; }
+  .image-item__info {
+    display: inline-block; }
