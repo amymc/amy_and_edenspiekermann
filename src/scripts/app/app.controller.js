@@ -49,8 +49,8 @@ function AppController($, HandleBars, AppModel, imageItem) {
   Ctrl.prototype.getData = function getata() {
     this.model.get()
       .done(function cb(data) {
-         this.data = data.items;
-         this.sortData(this.data);
+         //this.data = data.items;
+         this.sortData(data.items);
          //this.renderData(this.data);
       }.bind(this));
   };
@@ -61,15 +61,28 @@ function AppController($, HandleBars, AppModel, imageItem) {
   Ctrl.prototype.sortData = function sortData(data) {
     //iterate over array,
     // compare each date takem with previous
-    console.log('before sort', this.data);
+    console.log('before sort', data);
     //var sortedData = this.data.slice(0).sort(function(a, b) {
-    this.data.sort(function(a, b) {
+    data.sort(function(a, b) {
      // console.log('a', a.date_taken, 'b',new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime() );
       //most recent first
       return new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime();
     });
     //console.log('sortData', sortedData );
-    this.renderData(this.data);
+    //this.renderData(this.data);
+    this.separateTags(data);
+  };
+
+  /**
+  * Separate tags into an array
+  */
+  Ctrl.prototype.separateTags = function separateTags(data) {
+    for (var i=0; i < data.length; i++) {
+      var tagsArray = data[i].tags.split(' ');
+      data[i].tags = tagsArray;
+    }
+    this.data = data;
+    this.renderData(data);
   };
 
   Ctrl.prototype.renderData = function renderData(data) {
