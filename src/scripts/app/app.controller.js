@@ -23,10 +23,10 @@ function AppController($, HandleBars, AppModel, imageItem) {
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
     //notes to self:
     // lazy load??
-    //sort by date taken?
     // routing??
     // format tags??
     //split into modules
+    //concat js??
   };
 
   Ctrl.prototype.filter = function filter(type, e) {
