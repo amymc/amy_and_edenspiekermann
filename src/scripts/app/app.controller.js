@@ -21,6 +21,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
     //click on user, filter by user
     this.$container.find('.js-author').on('click', this.filter.bind(this, 'author'));
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
+    $(document).on( 'scroll', this.lazyLoadImages.bind(this));
     //notes to self:
     // lazy load??
     // routing??
@@ -76,7 +77,20 @@ function AppController($, HandleBars, AppModel, imageItem) {
   Ctrl.prototype.renderData = function renderData(data) {
     console.log('renderData', this.data);
     this.$container.html(imageItem({data: data}));
+    this.lazyLoadImages();
     this.addListeners(); 
+  };
+
+  Ctrl.prototype.lazyLoadImages = function lazyLoadImages(data) {
+    var images = this.$container.find('img');
+    var documentPosition = $(document).scrollTop() + $( window ).height();
+    $(images).each(function(index, image) {
+      if ($(image).offset().top < documentPosition) {
+        var dataSrc = $(image).attr("data-src");
+        $(image).attr('src', dataSrc);
+        $(image).parent().addClass('image-item__link--loaded');
+      }
+    });
   };
 
   return Ctrl;
