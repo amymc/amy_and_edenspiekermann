@@ -23,10 +23,11 @@ function AppController($, HandleBars, AppModel, imageItem) {
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
     $(document).on( 'scroll', this.lazyLoadImages.bind(this));
     //notes to self:
-    // lazy load??
+    // lazy load on resize, debounce??
     // routing??
     // format tags??
     //split into modules
+    //opacity on lazyload
     //concat js??
   };
 

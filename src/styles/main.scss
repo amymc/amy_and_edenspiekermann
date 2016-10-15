@@ -1,3 +1,7 @@
+html {
+  font-size: 62.5%;
+}
+
 .image-viewer {
   font-family: 'helvetica', sans-serif;
 }
@@ -35,8 +39,12 @@
     height: auto;
   }
 
-  &__info {
+  &__info-wrapper {
     width: 60%;
+  }
+
+  &__title {
+    font-size: 1.6rem;
   }
 
   &__info-item {
@@ -48,14 +56,13 @@
   display: block;
   width: 98px;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 1.8rem;
 }
 
 .loading:after {
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  -webkit-animation: ellipsis steps(4,end) 900ms infinite;
   animation: ellipsis steps(4,end) 900ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
