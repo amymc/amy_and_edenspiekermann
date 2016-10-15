@@ -12,6 +12,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
   function Ctrl($container) {
     console.log('this', this, AppModel, $container);
     this.$container = $container;
+    this.backBtn = this.$container.find('#js-image-viewer-btn');
     this.model = new AppModel();
     this.getData();
   }
@@ -21,14 +22,13 @@ function AppController($, HandleBars, AppModel, imageItem) {
     //click on user, filter by user
     this.$container.find('.js-author').on('click', this.filter.bind(this, 'author'));
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
+    this.backBtn.on('click', this.renderItems.bind(this, this.data, 'back'));
+
     $(document).on( 'scroll', this.lazyLoadImages.bind(this));
     //notes to self:
     // lazy load on resize, debounce??
-    // routing??
-    // format tags??
+    // format tags??, fix layout
     //split into modules
-    //opacity on lazyload
-    //concat js??
   };
 
   Ctrl.prototype.filter = function filter(type, e) {
@@ -42,7 +42,9 @@ function AppController($, HandleBars, AppModel, imageItem) {
       return item.tags.indexOf(filterItem) > -1;
     });
 
-    this.renderData(filteredData);
+    this.renderItems(filteredData);
+    console.log('back btn', this.backBtn);
+    this.backBtn.removeClass('image-viewer__btn--hidden');
   };
 
   Ctrl.prototype.getData = function getata() {
@@ -72,14 +74,17 @@ function AppController($, HandleBars, AppModel, imageItem) {
       data[i].tags = tagsArray;
     }
     this.data = data;
-    this.renderData(data);
+    this.renderItems(data);
   };
 
-  Ctrl.prototype.renderData = function renderData(data) {
-    console.log('renderData', this.data);
-    this.$container.html(imageItem({data: data}));
+  Ctrl.prototype.renderItems = function renderItems(data, action) {
+    console.log('renderItems', this.data);
+    this.$container.find('#js-image-viewer-inner').html(imageItem({data: data}));
     this.lazyLoadImages();
-    this.addListeners(); 
+    this.addListeners();
+    if (action === 'back') {
+      this.backBtn.addClass('image-viewer__btn--hidden');
+    }
   };
 
   Ctrl.prototype.lazyLoadImages = function lazyLoadImages(data) {

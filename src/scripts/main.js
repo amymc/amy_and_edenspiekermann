@@ -13,5 +13,5 @@ requirejs([
 function Main(AppController) {
   console.log('this', $('.image-viewer'));
   console.log('AppController', AppController);
-  var app= new AppController($('.image-viewer'));
+  var app= new AppController($('#js-image-viewer'));
 });
