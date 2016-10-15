@@ -1,0 +1,40 @@
+.image-viewer {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 14px;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__inner-wrapper {
+    margin: 0 16px;
+
+    @media (min-width: 1140px) {
+      margin: 0;
+    }
+  }
+
+  &__title {
+    color: #ff4350;
+    font-size: 20px;
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  &__btn {
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 2px solid #ff4350;
+    background-color: #ff4350;
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      background-color: #fff;
+      color: #ff4350;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+}

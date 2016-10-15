@@ -1,13 +1,15 @@
 {{#each data}}
   <div class="image-item">
-    <a class="image-item__link" href="{{link}}">
-      <img class="image-item__image" data-src="{{media.m}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
-    </a>
+    <div class="image-item__link-wrapper">
+      <a class="image-item__link" href="{{link}}">
+        <img class="image-item__image" data-src="{{media.m}}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+      </a>
+    </div>
     <div class="image-item__info-wrapper">
       <h2 class="image-item__title">{{title}}</h2>
-      <p class="image-item__info-item js-author" data-filter-item="{{author_id}}">{{splitString author}}</p>
-      <p>Date taken:<span class="js-date">{{formatTime date_taken}}</span></p>
-      <p>
+      <p class="image-item__info-block image-item__info-item js-author" data-filter-item="{{author_id}}">{{splitString author}}</p>
+      <p class="image-item__info-block">{{formatTime date_taken}}</p>
+      <p class="image-item__info-block">
         Tags
         {{#each tags}}
           <span class="image-item__info-item js-tag" data-filter-item="{{this}}">{{this}}</span>

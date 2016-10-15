@@ -1,102 +1,16 @@
+@import "utilities/reset.scss";
+
+@import "modules/image-item.scss";
+@import "modules/image-viewer.scss";
+@import "modules/loader.scss";
+
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
 }
 
-.image-viewer {
-  font-family: 'helvetica', sans-serif;
-
-  &__btn {
-    margin-bottom: 15px;
-    cursor: pointer;
-    border: 2px solid #ff4350;
-    background-color: #ff4350;
-    color: #fff;
-
-    &:hover,
-    &:focus {
-      background-color: #fff;
-      color: #ff4350;
-    }
-
-    &--hidden {
-      display: none;
-    }
-  }
-}
-
-.image-item {
-  width: 80%;
-  margin: 0 auto;
-
-  @media (min-width: 600px) {
-    display: inline-flex;
-    width: 100%;
-  }
-
-  &__link{
-    display: block;
-    position:relative;
-    padding-bottom:100%;
-    height:0;
-    opacity: 0;
-    z-index: 10;
-    transition: opacity 2s ease-in-out;
-
-    @media (min-width: 600px) {
-      width: 40%;
-    }
-
-    &--loaded {
-      padding-bottom: 0;
-      height: auto;
-      opacity: 1;
-    }
-  }
-
-  &__image {
-    display: block;
-    width: 100%;
-    height: auto;
-    box-shadow: 3px 3px 1px #ccc;
-  }
-
-  &__info-wrapper {
-    width: 60%;
-  }
-
-  &__title {
-    font-size: 1.6rem;
-  }
-
-  &__info-item {
-    cursor: pointer;
-  }
-}
-
-.loading {
-  display: block;
-  width: 98px;
-  margin: 0 auto;
-  font-size: 1.8rem;
-}
-
-.loading:after {
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: bottom;
-  animation: ellipsis steps(4,end) 900ms infinite;
-  content: "\2026"; /* ascii code for the ellipsis character */
-  width: 0px;
-}
-
-@keyframes ellipsis {
-  to {
-    width: 40px;
-  }
-}
-
-@-webkit-keyframes ellipsis {
-  to {
-    width: 40px;
-  }
-}

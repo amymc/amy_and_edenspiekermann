@@ -1,6 +1,3 @@
-/**
- * 
- */
 define([
   'jquery',
   'hbs',
@@ -10,7 +7,6 @@ define([
 function AppController($, HandleBars, AppModel, imageItem) {
 
   function Ctrl($container) {
-    console.log('this', this, AppModel, $container);
     this.$container = $container;
     this.backBtn = this.$container.find('#js-image-viewer-btn');
     this.model = new AppModel();
@@ -18,8 +14,6 @@ function AppController($, HandleBars, AppModel, imageItem) {
   }
 
   Ctrl.prototype.addListeners = function addListeners() {
-    console.log('add addListeners');
-    //click on user, filter by user
     this.$container.find('.js-author').on('click', this.filter.bind(this, 'author'));
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
     this.backBtn.on('click', this.renderItems.bind(this, this.data, 'back'));
@@ -29,6 +23,10 @@ function AppController($, HandleBars, AppModel, imageItem) {
     // lazy load on resize, debounce??
     // format tags??, fix layout
     //split into modules
+    //create colour vars
+    //image sizes
+    //rename app
+    //make filter title
   };
 
   Ctrl.prototype.filter = function filter(type, e) {
@@ -43,21 +41,21 @@ function AppController($, HandleBars, AppModel, imageItem) {
     });
 
     this.renderItems(filteredData);
-    console.log('back btn', this.backBtn);
     this.backBtn.removeClass('image-viewer__btn--hidden');
   };
 
   Ctrl.prototype.getData = function getata() {
     this.model.get()
       .done(function cb(data) {
-         this.sortData(data.items);
+        console.log('data', data);
+         this.sortItems(data.items);
       }.bind(this));
   };
 
   /**
   * Sort by date taken
   */
-  Ctrl.prototype.sortData = function sortData(data) {
+  Ctrl.prototype.sortItems = function sortItems(data) {
     data.sort(function(a, b) {
       //most recent first
       return new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime();
@@ -78,8 +76,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
   };
 
   Ctrl.prototype.renderItems = function renderItems(data, action) {
-    console.log('renderItems', this.data);
-    this.$container.find('#js-image-viewer-inner').html(imageItem({data: data}));
+    this.$container.find('#js-image-items-wrapper').html(imageItem({data: data}));
     this.lazyLoadImages();
     this.addListeners();
     if (action === 'back') {
@@ -89,8 +86,12 @@ function AppController($, HandleBars, AppModel, imageItem) {
 
   Ctrl.prototype.lazyLoadImages = function lazyLoadImages(data) {
     var images = this.$container.find('img');
-    var documentPosition = $(document).scrollTop() + $( window ).height();
+    var documentPosition = $(document).scrollTop() + $(window).height();
     $(images).each(function(index, image) {
+      console.log('$(document).scrollTop()', $(document).scrollTop(), '$(window).height()', $(window).height());
+              console.log('$(image).offset().top', $(image).offset().top);
+
+        // add random px to documentPositon or else change placeholders size
       if ($(image).offset().top < documentPosition) {
         var dataSrc = $(image).attr("data-src");
         $(image).attr('src', dataSrc);
