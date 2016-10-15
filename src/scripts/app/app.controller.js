@@ -25,6 +25,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
     //split into modules
     //image sizes
     //rename app
+    //combine watch task with npm start
   };
 
   Ctrl.prototype.filter = function filter(type, e) {

@@ -1,18 +1,10 @@
 @import "utilities/reset.scss";
 
 @import "base/colours.scss";
+@import "base/main.scss";
 
 @import "modules/image-item.scss";
 @import "modules/image-viewer.scss";
 @import "modules/loader.scss";
 
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-  -webkit-font-smoothing: antialiased;
-}
 
