@@ -14,7 +14,7 @@
   }
 
   &__title {
-    color: #ff4350;
+    color: $colour-red;
     font-size: 20px;
     text-align: center;
     margin: 30px 0;
@@ -22,16 +22,16 @@
 
   &__btn {
     cursor: pointer;
-    border: 2px solid #ff4350;
-    background-color: #ff4350;
-    color: #fff;
+    border: 2px solid $colour-red;
+    background-color: $colour-red;
+    color: $colour-white;
     font-size: 14px;
     font-weight: bold;
 
     &:hover,
     &:focus {
-      background-color: #fff;
-      color: #ff4350;
+      background-color: $colour-white;
+      color: $colour-red;
     }
 
     &--hidden {

@@ -11,7 +11,7 @@
 
   &__link-wrapper {
     width: 100%;
-    box-shadow: 3px 3px 1px #ccc;
+    box-shadow: 3px 3px 1px $colour-silver;
 
     @media (min-width: 600px) {
       width: 40%;
@@ -73,13 +73,13 @@
   &__info-item {
     display: inline-block;
     cursor: pointer;
-    color: #ff4350;
-    border-bottom: 2px solid #ff4350;
+    color: $colour-red;
+    border-bottom: 2px solid $colour-red;
 
     &:hover,
     &:focus {
-      color: #000;
-      border-bottom: 2px solid #000;
+      color: $colour-black;
+      border-bottom: 2px solid $colour-black;
     }
   }
 }

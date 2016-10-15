@@ -23,8 +23,8 @@ function AppController($, HandleBars, AppModel, imageItem) {
     //notes to self:
     // lazy load on resize, debounce??
     //split into modules
-    //create colour vars
     //image sizes
+    //second image bottom border
     //rename app
   };
 
