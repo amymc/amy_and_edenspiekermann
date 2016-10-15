@@ -8,7 +8,8 @@ function AppController($, HandleBars, AppModel, imageItem) {
 
   function Ctrl($container) {
     this.$container = $container;
-    this.backBtn = this.$container.find('#js-image-viewer-btn');
+    this.$backBtn = this.$container.find('#js-image-viewer-btn');
+    this.$title = this.$container.find('#js-image-viewer-title');
     this.model = new AppModel();
     this.getData();
   }
@@ -16,22 +17,22 @@ function AppController($, HandleBars, AppModel, imageItem) {
   Ctrl.prototype.addListeners = function addListeners() {
     this.$container.find('.js-author').on('click', this.filter.bind(this, 'author'));
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
-    this.backBtn.on('click', this.renderItems.bind(this, this.data, 'back'));
+    this.$backBtn.on('click', this.renderItems.bind(this, this.data, 'back'));
 
     $(document).on( 'scroll', this.lazyLoadImages.bind(this));
     //notes to self:
     // lazy load on resize, debounce??
-    // format tags??, fix layout
     //split into modules
     //create colour vars
     //image sizes
     //rename app
-    //make filter title
   };
 
   Ctrl.prototype.filter = function filter(type, e) {
     e.preventDefault();
     var filterItem = $(e.currentTarget).attr("data-filter-item");
+    var authorName = $(e.currentTarget).attr("data-author-name");
+    var itemTitle = authorName ? authorName : filterItem;
 
     var filteredData = this.data.filter(function (item) {
       if (type === 'author') {
@@ -41,7 +42,8 @@ function AppController($, HandleBars, AppModel, imageItem) {
     });
 
     this.renderItems(filteredData);
-    this.backBtn.removeClass('image-viewer__btn--hidden');
+    this.$title.html('Filtered on ' + type + ': '+ itemTitle);
+    this.$backBtn.removeClass('image-viewer__btn--hidden');
   };
 
   Ctrl.prototype.getData = function getata() {
@@ -80,7 +82,8 @@ function AppController($, HandleBars, AppModel, imageItem) {
     this.lazyLoadImages();
     this.addListeners();
     if (action === 'back') {
-      this.backBtn.addClass('image-viewer__btn--hidden');
+      this.$backBtn.addClass('image-viewer__btn--hidden');
+      this.$title.html('&lsaquo;Insert witty title here&rsaquo;');
     }
   };
 
