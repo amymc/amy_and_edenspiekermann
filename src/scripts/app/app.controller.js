@@ -24,7 +24,6 @@ function AppController($, HandleBars, AppModel, imageItem) {
     // lazy load on resize, debounce??
     //split into modules
     //image sizes
-    //second image bottom border
     //rename app
   };
 
@@ -42,8 +41,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
     });
 
     this.renderItems(filteredData);
-    this.$title.html('Filtered on ' + type + ': '+ itemTitle);
-    this.$backBtn.removeClass('image-viewer__btn--hidden');
+    this.updateUI(type, itemTitle);
   };
 
   Ctrl.prototype.getData = function getata() {
@@ -102,6 +100,16 @@ function AppController($, HandleBars, AppModel, imageItem) {
       }
     });
   };
+
+  /**
+  * Update UI for filtered results
+  */
+  Ctrl.prototype.updateUI = function updateUI(type, itemTitle) {
+    $('html,body').animate({ scrollTop: 0 }, '500');
+    this.$title.html('Filtered on ' + type + ': '+ itemTitle);
+    this.$backBtn.removeClass('image-viewer__btn--hidden');
+  };
+
 
   return Ctrl;
 });
