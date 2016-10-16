@@ -6,8 +6,7 @@ define([
 ],
 function (Handlebars, moment) {
   function formatTime (context) {
-    var localTime = moment(context).format('dddd, MMMM Do YYYY, HH:mm');
-    return localTime;
+    return moment(context).format('D/MM/YYYY HH:mm');
   }
 
   Handlebars.registerHelper( 'formatTime', formatTime );

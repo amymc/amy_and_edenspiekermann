@@ -26,6 +26,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
     //image sizes
     //rename app
     //combine watch task with npm start
+    //save css breakpoints as mixin
   };
 
   Ctrl.prototype.filter = function filter(type, e) {

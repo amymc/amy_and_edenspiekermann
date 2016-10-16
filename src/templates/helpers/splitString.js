@@ -5,8 +5,7 @@ define([
 ],
 function (Handlebars) {
   function splitString (string) {
-    var newString = (string.split(/[()]/))[1];
-    return newString;
+    return (string.split(/[()]/))[1];
   }
 
   Handlebars.registerHelper('splitString', splitString);
