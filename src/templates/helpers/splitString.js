@@ -1,5 +1,3 @@
-/**
- */
 define([
   'hbs/handlebars'
 ],
@@ -10,6 +8,5 @@ function (Handlebars) {
 
   Handlebars.registerHelper('splitString', splitString);
   return splitString;
-
 });
 

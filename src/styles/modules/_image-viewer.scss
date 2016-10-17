@@ -8,7 +8,7 @@
   &__inner-wrapper {
     margin: 16px;
 
-    @media (min-width: 1140px) {
+    @include large-up {
       margin: 16px 0;
     }
   }

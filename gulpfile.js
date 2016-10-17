@@ -16,7 +16,7 @@ gulp.task('sass', function () {
 
 gulp.task('js-concat', function(){
   return gulp
-    .src('./src/scripts/**/*.js')
+    .src(['./src/scripts/**/*.js', './src/templates/helpers/*.js'])
     .pipe(concat('concat.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist/js/'));
@@ -24,5 +24,5 @@ gulp.task('js-concat', function(){
 
 gulp.task('watch', function() {
    gulp.watch('./src/styles/**/*.scss', ['sass']),
-   gulp.watch('./src/scripts/**/*.js', ['js-concat']);
+   gulp.watch(['./src/scripts/**/*.js', './src/templates/helpers/*.js'], ['js-concat']);
 });

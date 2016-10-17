@@ -3,7 +3,7 @@
   width: 80%;
   margin: 0 auto;
 
-  @media (min-width: 600px) {
+  @include medium-up {
     display: inline-flex;
     width: 100%;
     margin: 15px 0;
@@ -14,7 +14,7 @@
     height: 100%;
     box-shadow: 3px 3px 1px $colour-silver;
 
-    @media (min-width: 600px) {
+    @include medium-up {
       width: 40%;
       max-width: 370px;
     }
@@ -57,7 +57,7 @@
   &__info-wrapper {
     padding: 20px 0;
 
-    @media (min-width: 600px) {
+    @include medium-up {
       width: 60%;
       padding: 0 0 0 20px;
     }

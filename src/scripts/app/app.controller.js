@@ -18,15 +18,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
     this.$container.find('.js-author').on('click', this.filter.bind(this, 'author'));
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
     this.$backBtn.on('click', this.renderItems.bind(this, this.data, 'back'));
-
-    $(document).on( 'scroll', this.lazyLoadImages.bind(this));
-    //notes to self:
-    // lazy load on resize, debounce??
-    //split into modules
-    //image sizes
-    //rename app
-    //combine watch task with npm start
-    //save css breakpoints as mixin
+    $(document).on('scroll', this.lazyLoadImages.bind(this));
   };
 
   Ctrl.prototype.filter = function filter(type, e) {
@@ -46,8 +38,8 @@ function AppController($, HandleBars, AppModel, imageItem) {
     this.updateUI(type, itemTitle);
   };
 
-  Ctrl.prototype.getData = function getata() {
-    this.model.get()
+  Ctrl.prototype.getData = function getData() {
+    this.model.get('edenspiekermann')
       .done(function cb(data) {
         console.log('data', data);
          this.sortItems(data.items);
