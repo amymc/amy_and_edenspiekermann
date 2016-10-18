@@ -13,14 +13,26 @@
     }
   }
 
+  &__header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2;
+    padding: 30px 0;
+    box-shadow: 0 1px 0 $colour-silver;
+    background-color: white;
+  }
+
   &__title {
     color: $colour-red;
     font-size: 20px;
     text-align: center;
-    margin: 30px 0;
+    line-height: 2.6rem;
   }
 
   &__btn {
+    position: absolute;
+    left: 0;
     cursor: pointer;
     border: 2px solid $colour-red;
     background-color: $colour-red;

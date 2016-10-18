@@ -1,16 +1,16 @@
 define([
   'jquery',
   'hbs',
-  './app.model',
+  './imageviewer.model',
   'hbs!templates/image-item'
 ],
-function AppController($, HandleBars, AppModel, imageItem) {
+function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
 
   function Ctrl($container) {
     this.$container = $container;
     this.$backBtn = this.$container.find('#js-image-viewer-btn');
     this.$title = this.$container.find('#js-image-viewer-title');
-    this.model = new AppModel();
+    this.model = new ImageViewerModel();
     this.getData();
   }
 
@@ -19,6 +19,7 @@ function AppController($, HandleBars, AppModel, imageItem) {
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
     this.$backBtn.on('click', this.renderItems.bind(this, this.data, 'back'));
     $(document).on('scroll', this.lazyLoadImages.bind(this));
+    $(window).on('resize', this.lazyLoadImages.bind(this));
   };
 
   Ctrl.prototype.filter = function filter(type, e) {

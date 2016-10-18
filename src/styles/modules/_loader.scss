@@ -1,7 +1,7 @@
 .loader {
   display: block;
   width: 98px;
-  margin: 0 auto;
+  margin: 20px auto;
   font-size: 1.8rem;
 }
 
@@ -9,18 +9,12 @@
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  animation: ellipsis steps(4,end) 900ms infinite;
+  animation: ellipsis steps(4, end) 900ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
 }
 
 @keyframes ellipsis {
-  to {
-    width: 40px;
-  }
-}
-
-@-webkit-keyframes ellipsis {
   to {
     width: 40px;
   }

@@ -8,10 +8,8 @@ requirejs.config({
 });
 
 requirejs([
-  'scripts/app/app.controller'
+  'scripts/imageviewer/imageviewer.controller'
 ],
-function Main(AppController) {
-  console.log('this', $('.image-viewer'));
-  console.log('AppController', AppController);
-  var app= new AppController($('#js-image-viewer'));
+function Main(ImageViewerController) {
+  var imageViewer = new ImageViewerController($('#js-image-viewer'));
 });

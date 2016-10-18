@@ -4,8 +4,7 @@
 define([
   'jquery'
 ],
-function AppModel($) {
-  console.log('model!');
+function ImageViewerModel($) {
   function Mdl() {
   }
 
