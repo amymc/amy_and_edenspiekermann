@@ -1,0 +1,21 @@
+{
+  "name": "amy_and_edenspiekermann",
+  "version": "1.0.0",
+  "homepage": "https://github.com/amymc/amy_and_edenspiekermann",
+  "authors": [
+    "amymc"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "handlebars": "~4.0.5",
+    "jquery": "~3.1.1",
+    "momentjs": "~2.15.1",
+    "requirejs": "~2.3.2",
+    "require-handlebars-plugin": "~1.0.0"
+  }
+}
