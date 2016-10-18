@@ -8,8 +8,10 @@ requirejs.config({
 });
 
 requirejs([
+  'scripts/util/windowresize',
   'scripts/imageviewer/imageviewer.controller'
 ],
-function Main(ImageViewerController) {
+function Main(WindowResize, ImageViewerController) {
   var imageViewer = new ImageViewerController($('#js-image-viewer'));
+  WindowResize.init();
 });

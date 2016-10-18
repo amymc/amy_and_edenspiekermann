@@ -19,7 +19,9 @@ function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
     this.$container.find('.js-tag').on('click', this.filter.bind(this, 'tag'));
     this.$backBtn.on('click', this.renderItems.bind(this, this.data, 'back'));
     $(document).on('scroll', this.lazyLoadImages.bind(this));
-    $(window).on('resize', this.lazyLoadImages.bind(this));
+    $(window).on('resizecomplete', function resizeComplete() {
+      this.lazyLoadImages();
+    }.bind(this));
   };
 
   Ctrl.prototype.filter = function filter(type, e) {
@@ -46,15 +48,29 @@ function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
       }.bind(this));
   };
 
-  /**
-  * Sort by date taken
-  */
-  Ctrl.prototype.sortItems = function sortItems(data) {
-    data.sort(function(a, b) {
-      //most recent first
-      return new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime();
+  Ctrl.prototype.lazyLoadImages = function lazyLoadImages(data) {
+    var images = this.$container.find('img');
+    var documentPosition = $(document).scrollTop() + $(window).height();
+    $(images).each(function(index, image) {
+      // add 100 - hack to account for the src placeholder gifs 
+      // before images are loaded the gifs take up more height than the final images
+      // so browser thinks images aren't in view 
+      if ($(image).offset().top < documentPosition + 100) {
+        var dataSrc = $(image).attr("data-src");
+        $(image).attr('src', dataSrc);
+        $(image).parent().addClass('image-item__link--loaded');
+       }
     });
-    this.separateTags(data);
+  };
+
+    Ctrl.prototype.renderItems = function renderItems(data, action) {
+    this.$container.find('#js-image-items-wrapper').html(imageItem({data: data}));
+    this.lazyLoadImages();
+    this.addListeners();
+    if (action === 'back') {
+      this.$backBtn.addClass('image-viewer__btn--hidden');
+      this.$title.html('&lsaquo;Insert witty title here&rsaquo;');
+    }
   };
 
   /**
@@ -69,29 +85,15 @@ function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
     this.renderItems(data);
   };
 
-  Ctrl.prototype.renderItems = function renderItems(data, action) {
-    this.$container.find('#js-image-items-wrapper').html(imageItem({data: data}));
-    this.lazyLoadImages();
-    this.addListeners();
-    if (action === 'back') {
-      this.$backBtn.addClass('image-viewer__btn--hidden');
-      this.$title.html('&lsaquo;Insert witty title here&rsaquo;');
-    }
-  };
-
-  Ctrl.prototype.lazyLoadImages = function lazyLoadImages(data) {
-    var images = this.$container.find('img');
-    var documentPosition = $(document).scrollTop() + $(window).height();
-    $(images).each(function(index, image) {
-      // add 100 - hack to account for the src placeholder gifs 
-      // before images are loaded the gifs take up more height than the final images
-      // so browser thinks images aren't in view 
-      if ($(image).offset().top < documentPosition + 100) {
-        var dataSrc = $(image).attr("data-src");
-        $(image).attr('src', dataSrc);
-        $(image).parent().addClass('image-item__link--loaded');
-       }
+  /**
+  * Sort by date taken
+  */
+  Ctrl.prototype.sortItems = function sortItems(data) {
+    data.sort(function(a, b) {
+      //most recent first
+      return new Date(b.date_taken).getTime() - new Date(a.date_taken).getTime();
     });
+    this.separateTags(data);
   };
 
   /**
