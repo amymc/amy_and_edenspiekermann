@@ -42,7 +42,6 @@ function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
   Ctrl.prototype.getData = function getData() {
     this.model.get('edenspiekermann')
       .done(function cb(data) {
-        console.log('data', data);
          this.sortItems(data.items);
       }.bind(this));
   };
@@ -84,15 +83,14 @@ function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
     var images = this.$container.find('img');
     var documentPosition = $(document).scrollTop() + $(window).height();
     $(images).each(function(index, image) {
-      console.log('$(document).scrollTop()', $(document).scrollTop(), '$(window).height()', $(window).height());
-              console.log('$(image).offset().top', $(image).offset().top);
-
-        // add random px to documentPositon or else change placeholders size
-      if ($(image).offset().top < documentPosition) {
+      // add 100 - hack to account for the src placeholder gifs 
+      // before images are loaded the gifs take up more height than the final images
+      // so browser thinks images aren't in view 
+      if ($(image).offset().top < documentPosition + 100) {
         var dataSrc = $(image).attr("data-src");
         $(image).attr('src', dataSrc);
         $(image).parent().addClass('image-item__link--loaded');
-      }
+       }
     });
   };
 

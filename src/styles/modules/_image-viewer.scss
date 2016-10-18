@@ -6,7 +6,9 @@
   margin-right: auto;
 
   &__inner-wrapper {
+    position: relative;
     margin: 16px;
+    overflow: hidden;
 
     @include large-up {
       margin: 16px 0;
@@ -17,10 +19,12 @@
     position: fixed;
     width: 100%;
     top: 0;
+    right: 2px;
+    left: 2px;
     z-index: 2;
     padding: 30px 0;
     box-shadow: 0 1px 0 $colour-silver;
-    background-color: white;
+    background-color: $colour-white;
   }
 
   &__title {
