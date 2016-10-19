@@ -17,25 +17,37 @@
 
   &__header {
     position: fixed;
-    width: 100%;
+    max-width: 1140px;
+    margin: 0 16px;
     top: 0;
-    right: 2px;
-    left: 2px;
+    right: 0;
+    left: 0;
     z-index: 2;
     padding: 30px 0;
     box-shadow: 0 1px 0 $colour-silver;
     background-color: $colour-white;
+
+    @include large-up {
+      margin: 0 auto;
+    }
   }
 
   &__title {
+    float: left;
     color: $colour-red;
     font-size: 20px;
     text-align: center;
     line-height: 2.6rem;
+    width: 100%;
+
+    &--narrow {
+      //68px = width of image-viewer__btn
+      width: calc(100% - 78px);
+    }
   }
 
   &__btn {
-    position: absolute;
+    float: left;
     left: 0;
     cursor: pointer;
     border: 2px solid $colour-red;

@@ -24,7 +24,7 @@
     }
   }
 
-  &__link{
+  &__link {
     display: block;
     position:relative;
     padding-bottom: 56.25%;
@@ -33,6 +33,7 @@
     z-index: 1;
     transition: opacity 2s ease-in-out;
     overflow: hidden;
+
     &--loaded {
       padding-bottom: 0;
       height: auto;

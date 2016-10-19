@@ -69,7 +69,8 @@ function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
     this.addListeners();
     if (action === 'back') {
       this.$backBtn.addClass('image-viewer__btn--hidden');
-      this.$title.html('&lsaquo;Insert witty title here&rsaquo;');
+      this.$title.html('&lsaquo;Insert witty title here&rsaquo;')
+        .removeClass('image-viewer__title--narrow');;
     }
   };
 
@@ -101,7 +102,8 @@ function ImageViewerController($, HandleBars, ImageViewerModel, imageItem) {
   */
   Ctrl.prototype.updateUI = function updateUI(type, itemTitle) {
     $('html,body').animate({ scrollTop: 0 }, '500');
-    this.$title.html('Filtered on ' + type + ': '+ itemTitle);
+    this.$title.html('Filtered on ' + type + ': '+ itemTitle)
+      .addClass('image-viewer__title--narrow');
     this.$backBtn.removeClass('image-viewer__btn--hidden');
   };
 
